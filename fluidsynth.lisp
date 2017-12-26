@@ -1,18 +1,18 @@
-;;; Copyright (c) 2015-2016 Tito Latini
-;;;
-;;; This library is free software; you can redistribute it and/or
-;;; modify it under the terms of the GNU Lesser General Public
-;;; License as published by the Free Software Foundation; either
-;;; version 2.1 of the License, or (at your option) any later version.
-;;;
-;;; This library is distributed in the hope that it will be useful,
-;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-;;; Lesser General Public License for more details.
-;;;
-;;; You should have received a copy of the GNU Lesser General Public
-;;; License along with this library; if not, write to the Free Software
-;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+; Copyright (c) 2015-2016 Tito Latini
+;
+; This library is free software; you can redistribute it and/or
+; modify it under the terms of the GNU Lesser General Public
+; License as published by the Free Software Foundation; either
+; version 2.1 of the License, or (at your option) any later version.
+;
+; This library is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+; Lesser General Public License for more details.
+;
+; You should have received a copy of the GNU Lesser General Public
+; License along with this library; if not, write to the Free Software
+; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 (in-package :fluidsynth)
 
@@ -62,7 +62,8 @@
 
 (defvar *set-logger-functions-p* t)
 
-(cffi:defcallback log-function :void ((level :int) (msg :string) (data :pointer))
+(cffi:defcallback log-function :void
+  ((level :int) (msg :string) (data :pointer))
   (declare (ignore data))
   (format *logger-stream*
           "cl-fluidsynth: ~[panic: ~;error: ~;warning: ~;~;debug: ~]~A~%"
@@ -72,16 +73,17 @@
 (defun set-logger-functions ()
   (dotimes (level 5)
     (cffi:foreign-funcall "fluid_set_log_function" :int level
-                          :pointer (cffi:callback log-function)
-                          :pointer (cffi:null-pointer)
-                          :void)))
+                                                   :pointer (cffi:callback
+                                                             log-function)
+                                                   :pointer (cffi:null-pointer)
+                                                   :void)))
 
 (defun new-settings (&optional setting-list)
   (without-interrupts
-    (let ((obj (%new-settings)))
-      (loop for (name value) in setting-list
-            do (setf (setting obj name) value))
-      (when *set-logger-functions-p*
-        (set-logger-functions)
-        (setf *set-logger-functions-p* nil))
-      obj)))
+      (let ((obj (%new-settings)))
+        (loop for (name value) in setting-list
+              do (setf (setting obj name) value))
+        (when *set-logger-functions-p*
+          (set-logger-functions)
+          (setf *set-logger-functions-p* nil))
+        obj)))

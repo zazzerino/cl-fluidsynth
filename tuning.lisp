@@ -1,18 +1,18 @@
-;;; Copyright (c) 2015 Tito Latini
-;;;
-;;; This library is free software; you can redistribute it and/or
-;;; modify it under the terms of the GNU Lesser General Public
-;;; License as published by the Free Software Foundation; either
-;;; version 2.1 of the License, or (at your option) any later version.
-;;;
-;;; This library is distributed in the hope that it will be useful,
-;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-;;; Lesser General Public License for more details.
-;;;
-;;; You should have received a copy of the GNU Lesser General Public
-;;; License along with this library; if not, write to the Free Software
-;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+; Copyright (c) 2015 Tito Latini
+;
+; This library is free software; you can redistribute it and/or
+; modify it under the terms of the GNU Lesser General Public
+; License as published by the Free Software Foundation; either
+; version 2.1 of the License, or (at your option) any later version.
+;
+; This library is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+; Lesser General Public License for more details.
+;
+; You should have received a copy of the GNU Lesser General Public
+; License along with this library; if not, write to the Free Software
+; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 (in-package :incudine)
 
@@ -41,9 +41,9 @@
                                       (tuning-description tuning)
                                       pitch activate-p))))
 
-(defun set-fluidsynth-tuning (obj synth bank prog &key description
-                              (keynum-base 69) (freq-base 440) (degree-index 9)
-                              (activate-p t))
+(defun set-fluidsynth-tuning (obj synth bank prog
+                              &key description (keynum-base 69) (freq-base 440)
+                                (degree-index 9) (activate-p t))
   "Set the FluidSynth tuning with BANK and PROG preset. OBJ is a list of
 notes, a scl file or a INCUDINE:TUNING structure. KEYNUM-BASE, FREQ-BASE
 and DEGREE-INDEX are used as reference to generate the tuning frequencies
