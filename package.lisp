@@ -65,9 +65,12 @@
    ;; Synth
    #:CHANNEL-INFO-NAME-SIZE
    #:synth
-   #:new
-   #:delete
+   #:new-synth
+   #:delete-synth
    #:get-settings
+   ;; Audio Driver
+   #:new-audio-driver
+   #:delete-audio-driver
    ;; MIDI channel messages
    #:noteon
    #:noteoff
@@ -185,4 +188,20 @@
    #:start-voice
    #:get-voicelist
    #:handle-midi-event
-   #:set-midi-router))
+   #:set-midi-router
+   ;; Player
+   #:new-player
+   #:delete-player
+   #:player-add
+   #:player-play
+   #:player-stop
+   #:player-join
+   #:player-set-loop
+   #:player-set-midi-tempo
+   #:player-set-bpm
+   #:player-get-status
+   #:player-get-current-tick
+   #:player-get-total-ticks
+   #:player-get-bpm
+   #:player-get-midi-tempo
+   #:player-seek))

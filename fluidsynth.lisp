@@ -63,7 +63,7 @@
 (defvar *set-logger-functions-p* t)
 
 (cffi:defcallback log-function :void
-  ((level :int) (msg :string) (data :pointer))
+    ((level :int) (msg :string) (data :pointer))
   (declare (ignore data))
   (format *logger-stream*
           "cl-fluidsynth: ~[panic: ~;error: ~;warning: ~;~;debug: ~]~A~%"
@@ -80,10 +80,10 @@
 
 (defun new-settings (&optional setting-list)
   (without-interrupts
-      (let ((obj (%new-settings)))
-        (loop for (name value) in setting-list
-              do (setf (setting obj name) value))
-        (when *set-logger-functions-p*
-          (set-logger-functions)
-          (setf *set-logger-functions-p* nil))
-        obj)))
+    (let ((obj (%new-settings)))
+      (loop for (name value) in setting-list
+            do (setf (setting obj name) value))
+      (when *set-logger-functions-p*
+        (set-logger-functions)
+        (setf *set-logger-functions-p* nil))
+      obj)))
